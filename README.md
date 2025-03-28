@@ -1,6 +1,10 @@
-# Blazor-FluentSelect-v4-With-svgDrawings-
+# Blazor FluentSelect v4 with svg drawings
 use of SVG in the FluentOption of a FluentSelect component
 
-![peek_1](https://github.com/user-attachments/assets/75366a1a-480f-459f-8b07-837df0001321)
+
+
+https://github.com/user-attachments/assets/d93af9be-b1a0-4d70-b027-f4e20123fb90
+
+
 
 Try to use the placeholder and to display the SVG in the FluentSelect
