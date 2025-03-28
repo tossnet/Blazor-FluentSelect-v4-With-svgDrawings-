@@ -1,0 +1,42 @@
+﻿@page "/page2"
+
+@inject NavigationManager navigate
+
+
+<h1>Using OptionTemplate</h1>
+
+<FluentSelect Label="Style :"
+			  Items="@_formOptions"
+			  TOption="Option<int>"
+			  OptionText="@(i => i.Text)"
+			  OptionValue="@(i => i.Value.ToString())"
+			  Width="200px"
+			  @bind-Value="@varString"
+			  Placeholder="Select form...">
+			   
+	<OptionTemplate>
+		<svg width="79" height="20">
+			<polygon points="@context.Text" fill="#80b3ff" stroke="black" stroke-width="0.5pt" />
+		</svg>
+	</OptionTemplate>
+	
+</FluentSelect>
+
+
+<br />
+<FluentButton Style="margin-top:20px"
+			  Appearance="Appearance.Accent"
+			  OnClick="@(() => navigate.NavigateTo("/page3"))">Go to Page 3</FluentButton>
+
+
+@code {
+	private string varString { get; set; }
+
+	private static List<Option<int>> _formOptions = new()
+	{
+		{ new Option<int> { Value = 0, Text = "0,0 79,0 79,20 0,20" } },
+		{ new Option<int> { Value = 1, Text = "6,0 73,0 76,1 78,3 79,6  79,14 78,17 76,19 73,20  6,20 3,19 1,17 0,14  0,6 1,3 3,1 6,0" } },
+		{ new Option<int> { Value = 2, Text = "0,10 10,0 69,0 79,10 69,20 10,20" } },
+		{ new Option<int> { Value = 3, Text = "0,0 69,0 79,10 69,20 0,20" } },
+	};
+}

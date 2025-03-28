@@ -1,0 +1,58 @@
+﻿@page "/page3"
+
+
+<h1>Using the start slot</h1>
+
+<FluentSelect Label="Style :"		
+			  TOption="string"
+			  Width="200px"
+			  @bind-Value="@varString"
+			  Placeholder="Select form...">
+	<div slot="start">
+		@if (!string.IsNullOrEmpty(varString))
+		{
+			<svg width="79" height="20" style="margin-top: 5px;">
+				<polygon points="@GetPolygon()" fill="#80b3ff" stroke="black" stroke-width="0.5pt" />
+			</svg>
+		}
+	</div>
+	<FluentOption Value="0">
+		<svg width="79" height="20">
+			<rect width="79" height="20" fill="#80b3ff" stroke="black" />
+		</svg>
+	</FluentOption>
+	<FluentOption Value="1">
+		<svg width="79" height="20">
+			<rect width="79" height="20" rx="6" ry="6" fill="#80b3ff" stroke="black" stroke-width="0.5pt" />
+		</svg>
+	</FluentOption>
+	<FluentOption Value="2">
+		<svg width="79" height="20">
+			<polygon points="0,10 10,0 69,0 79,10 69,20 10,20" fill="#80b3ff" stroke="black" stroke-width="0.5pt" />
+		</svg>
+	</FluentOption>
+	<FluentOption Value="3">
+		<svg width="79" height="20">
+			<polygon points="0,0 69,0 79,10 69,20 0,20" fill="#80b3ff" stroke="black" stroke-width="0.5pt" />
+		</svg>
+	</FluentOption>
+</FluentSelect>
+
+
+@code {
+	private string varString { get; set; } //= "2";
+
+	private static List<Option<string>> _formOptions = new()
+	{
+		{ new Option<string> { Value = "0", Text = "0,0 79,0 79,20 0,20" } },
+		{ new Option<string> { Value = "1", Text = "6,0 73,0 76,1 78,3 79,6  79,14 78,17 76,19 73,20  6,20 3,19 1,17 0,14  0,6 1,3 3,1 6,0" } },
+		{ new Option<string> { Value = "2", Text = "0,10 10,0 69,0 79,10 69,20 10,20" } },
+		{ new Option<string> { Value = "3", Text = "0,0 69,0 79,10 69,20 0,20" } },
+	};
+
+	//methode qui retourne la proriété Text de _formOptions selon  varString
+	private string GetPolygon()
+	{
+		return _formOptions.FirstOrDefault(x => x.Value == varString)?.Text;
+	}
+}
